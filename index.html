@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OptiChain - Supply Chain Optimization</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    /* Reset and basic styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; line-height: 1.6; background: #f8f9fa; color: #333; }
+    
+    /* Fixed header and navigation */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+    }
+    nav .logo {
+      font-size: 1.8rem;
+      color: #2A9D8F;
+      font-weight: bold;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #264653;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #2A9D8F;
+    }
+    
+    /* General section styling */
+    section {
+      padding: 100px 5% 60px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    /* Home Section */
+    #home {
+      background: linear-gradient(135deg, #2A9D8F, #264653);
+      color: #fff;
+      text-align: center;
+    }
+    #home h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease-out;
+    }
+    #home p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease-out;
+    }
+    .cta {
+      padding: 1rem 2rem;
+      background: #E9C46A;
+      color: #264653;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .cta:hover { transform: translateY(-5px); }
+    
+    /* About Section */
+    #about {
+      background: #fff;
+      text-align: center;
+    }
+    #about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #264653;
+    }
+    #about p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+    
+    /* Services Section */
+    #services { background: #f0f0f0; }
+    #services h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #264653;
+    }
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .service-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      flex: 1 1 300px;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-5px); }
+    .service-card h3 { margin-bottom: 1rem; color: #2A9D8F; }
+    .service-card p { font-size: 1rem; color: #555; }
+    
+    /* Features Section */
+    #features { background: #fff; }
+    #features h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #264653;
+    }
+    .features-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      width: 100%;
+    }
+    .feature-card {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .feature-card h3 { margin-bottom: 1rem; color: #2A9D8F; }
+    .feature-card p { font-size: 1rem; color: #555; }
+    
+    /* Contact Section */
+    #contact { background: #264653; color: #fff; text-align: center; }
+    #contact h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    #contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #contact input,
+    #contact textarea {
+      padding: 1rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    #contact input::placeholder,
+    #contact textarea::placeholder { color: #aaa; }
+    #contact button {
+      padding: 1rem;
+      border: none;
+      border-radius: 50px;
+      background: #E9C46A;
+      color: #264653;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    #contact button:hover { transform: translateY(-5px); }
+    
+    /* Footer */
+    footer {
+      background: #b8d6ea;
+      color: #020202;
+      text-align: center;
+      padding: 1rem 5%;
+    }
+    footer p { font-size: 0.9rem; }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      header { padding: 1rem 2%; }
+      section { padding: 80px 2%; }
+      #home h1 { font-size: 2.5rem; }
+      #home p { font-size: 1rem; }
+    }
+    
+    /* Simple animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header and Navigation -->
+  <header>
+    <nav>
+      <div class="logo">OptiChain</div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- Home Section -->
+  <section id="home">
+    <h1>Transform Your Supply Chain</h1>
+    <p>Streamline operations with AI-driven insights, reducing stockouts and optimizing every route.</p>
+    <button class="cta">Get Started</button>
+  </section>
+  
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      At OptiChain, we leverage cutting-edge technology and decades of industry expertise to deliver data-driven solutions that revolutionize supply chain management. Our mission is to drive operational excellence and strategic growth for your business.
+    </p>
+  </section>
+  
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services-container">
+      <div class="service-card">
+        <h3>Real-time Inventory Management</h3>
+        <p>Monitor and manage inventory with precision in real time.</p>
+      </div>
+      <div class="service-card">
+        <h3>Shipment Tracking</h3>
+        <p>Stay updated on every shipment with robust tracking systems.</p>
+      </div>
+      <div class="service-card">
+        <h3>Demand Forecasting</h3>
+        <p>Predict market trends and demand fluctuations accurately.</p>
+      </div>
+      <div class="service-card">
+        <h3>Reduce Stockouts</h3>
+        <p>Eliminate shortages and boost supply chain reliability.</p>
+      </div>
+      <div class="service-card">
+        <h3>Optimize Routes</h3>
+        <p>Enhance delivery efficiency with smart route optimization.</p>
+      </div>
+      <div class="service-card">
+        <h3>Manage Warehouse Operations</h3>
+        <p>Streamline warehouse processes for smooth, effective operations.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section id="features">
+    <h2>Key Features</h2>
+    <div class="features-container">
+      <div class="feature-card">
+        <h3>Real-time Inventory Tracking</h3>
+        <p>Get live insights into your inventory levels anytime.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Route Optimization for Shipments</h3>
+        <p>Reduce delivery times and lower fuel costs with dynamic routing.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Demand Forecasting Using ML</h3>
+        <p>Utilize machine learning to predict demand trends accurately.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Supplier & Vendor Management</h3>
+        <p>Streamline collaboration with your supply chain partners.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Cost Analysis & Savings</h3>
+        <p>Optimize your budget with comprehensive cost analytics.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+  
+  <!-- Footer -->
+  <footer style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%;">
+    <p style="margin: 0;">Developed with love by <strong>Nishant Raj</strong></p>
+    <div style="display: flex; gap: 1rem;">
+      <a href="https://www.linkedin.com/in/the-nishant-raj-82972b208/" target="_blank">
+        <i class="fab fa-linkedin" style="font-size: 2rem; color: #0077b5;"></i>
+      </a>
+      <a href="https://www.instagram.com/the_nishant_raj/?utm_source=ig_web_button_share_sheet" target="_blank">
+        <i class="fab fa-instagram" style="font-size: 2rem; color: #E4405F;"></i>
+      </a>
+      <a href="https://github.com/thenishantraj" target="_blank">
+        <i class="fab fa-github" style="font-size: 2rem; color: #333;"></i>
+      </a>
+      <a href="mailto:nishantraj6581@gmail.com" target="_blank">
+        <i class="fas fa-envelope" style="font-size: 2rem; color: #D44638;"></i>
+      </a>
+    </div>
+  </footer>
+  
+  
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav ul li a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetID = this.getAttribute('href');
+        document.querySelector(targetID).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
