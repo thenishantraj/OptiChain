@@ -8,7 +8,7 @@ OptiChain is a **cutting-edge supply chain optimization platform** designed to i
 ✅ **Route Optimization** – Reduce fuel costs & improve efficiency.  
 ✅ **Demand Forecasting (ML-powered)** – Predict inventory needs accurately.  
 ✅ **Warehouse Operations** – Optimize storage & dispatch.  
-✅ **Supplier & Vendor Management** – Strengthen collaboration.
+✅ **Supplier & Vendor Management** – Strengthen collaboration...
 
 ## 🛠️ Tech Stack  
 - **Frontend:** HTML, CSS, JavaScript  
